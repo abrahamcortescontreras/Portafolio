@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abraham Cortes — Portfolio de Análisis & Contenido Financiero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0f0f;
+    --ink-mid: #4a4a4a;
+    --ink-light: #8a8a8a;
+    --paper: #f7f4ef;
+    --paper-dark: #ede9e2;
+    --accent: #1a4a2e;
+    --accent-light: #e8f0eb;
+    --rule: #d4cfc6;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding: 3rem 4rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+    background: var(--paper);
+  }
+
+  .header-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .header-name {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .header-subtitle {
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    margin-top: 0.5rem;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  .header-meta a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .header-meta a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav {
+    border-bottom: 1px solid var(--rule);
+    padding: 0 4rem;
+    display: flex;
+    gap: 0;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  nav a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    padding: 1rem 1.25rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+  nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* MAIN */
+  main { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    border-bottom: 1px solid var(--rule);
+    padding: 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .about-block { }
+
+  .about-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .about-value {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  /* SECTION */
+  section { padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    white-space: nowrap;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* FEATURED ARTICLE */
+  .featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 3rem;
+  }
+
+  .featured-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .featured-title {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .featured-meta {
+    font-size: 0.75rem;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .featured-excerpt {
+    font-size: 0.9rem;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-right {
+    background: var(--paper-dark);
+    border: 1px solid var(--rule);
+    padding: 2rem;
+  }
+
+  .featured-pullquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink);
+    border-left: 3px solid var(--accent);
+    padding-left: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-skills-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .skill-tag {
+    font-size: 0.72rem;
+    font-weight: 400;
+    border: 1px solid var(--rule);
+    padding: 0.25rem 0.6rem;
+    color: var(--ink-mid);
+    background: var(--paper);
+  }
+
+  /* ARTICLE GRID */
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+
+  .article-card {
+    padding: 1.5rem;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .article-card:nth-child(3n) { border-right: none; }
+  .article-card:nth-last-child(-n+3) { border-bottom: none; }
+
+  .article-card:hover { background: var(--paper-dark); }
+
+  .card-platform {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .card-desc {
+    font-size: 0.78rem;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--ink-light);
+  }
+
+  .card-link {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  .card-link::after { content: ' →'; }
+  .card-link:hover { text-decoration: underline; }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+    margin-top: 2.5rem;
+  }
+
+  .stat {
+    padding: 1.5rem;
+    border-right: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--accent);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    margin-top: 0.25rem;
+    font-weight: 400;
+  }
+
+  /* SKILLS SECTION */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-block {
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+  }
+
+  .skill-block-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .skill-block-desc {
+    font-size: 0.82rem;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--accent);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    margin: 3.5rem 0;
+  }
+
+  .cta-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .cta-btn {
+    background: white;
+    color: var(--accent);
+    border: none;
+    padding: 0.875rem 2rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .cta-btn:hover { opacity: 0.9; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--ink-light);
+    max-width: 100%;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* READ MORE BTN */
+  .read-btn {
+    display: inline-block;
+    border: 1px solid var(--ink);
+    padding: 0.6rem 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .read-btn:hover { background: var(--ink); color: var(--paper); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate { animation: fadeUp 0.5s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+  .delay-3 { animation-delay: 0.3s; opacity: 0; }
+
+  @media (max-width: 768px) {
+    header, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    nav { padding: 0 1.5rem; overflow-x: auto; }
+    .featured, .article-grid, .stats-row, .skills-grid { grid-template-columns: 1fr; }
+    .about-strip { grid-template-columns: 1fr 1fr; }
+    .article-card:nth-child(3n) { border-right: 1px solid var(--rule); }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); }
+    .cta-section { grid-template-columns: 1fr; }
+    header { grid-template-columns: 1fr; }
+    .header-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="header-eyebrow animate">Portfolio de Análisis &amp; Contenido</div>
+    <h1 class="header-name animate delay-1">Abraham Eliel<br>Cortes Contreras</h1>
+    <p class="header-subtitle animate delay-2">Economista en formación. Analista macroeconómico y creador de contenido financiero para audiencias digitales e institucionales.</p>
+  </div>
+  <div class="header-meta animate delay-3">
+    CDMX, México<br>
+    <a href="https://www.linkedin.com/in/abraham-cortes-" target="_blank">LinkedIn</a> · 
+    <a href="https://www.rankia.mx/blog/caminodeleconomista" target="_blank">Rankia</a><br>
+    Abrahamcortescontreras@gmail.com<br>
+    CFA Level I Candidate · C1 English
+  </div>
+</header>
+
+<nav>
+  <a href="#articulos" class="active">Artículos</a>
+  <a href="#analisis">Análisis de mercado</a>
+  <a href="#habilidades">Habilidades</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<main>
+
+  <div class="about-strip">
+    <div class="about-block">
+      <div class="about-label">Enfoque</div>
+      <div class="about-value">Macroeconomía aplicada a mercados financieros</div>
+    </div>
+    <div class="about-block">
+      <div class="about-label">Plataformas</div>
+      <div class="about-value">Rankia México · LinkedIn · Instagram · TikTok</div>
+    </div>
+    <div class="about-block">
+      <div class="about-label">Formación</div>
+      <div class="about-value">Lic. Economía UNAM · Lic. Administración UANL</div>
+    </div>
+  </div>
+
+  <!-- FEATURED -->
+  <section id="articulos">
+    <div class="section-header">
+      <span class="section-label">Pieza destacada</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="featured">
+      <div>
+        <span class="featured-tag">Rankia México · Publicado</span>
+        <h2 class="featured-title">Embajadores BIVA en CDMX: la nueva generación que transforma la cultura bursátil</h2>
+        <div class="featured-meta">Coautoría con Luis Alberto Téllez · Marzo 2026 · Economía y Finanzas en México</div>
+        <p class="featured-excerpt">Análisis editorial sobre el programa de Embajadores BIVA, la diversidad universitaria del ecosistema financiero joven en México, y el rol de la educación bursátil como herramienta de transformación social. Publicado en la comunidad financiera de habla hispana más grande de Latinoamérica.</p>
+        <a href="https://www.rankia.mx/blog/caminodeleconomista/7250967-embajadores-biva-cdmx-nueva-generacion-que-busca-transformar-cultura-bursatil-mexico" target="_blank" class="read-btn">Leer artículo completo</a>
+      </div>
+      <div class="featured-right">
+        <p class="featured-pullquote">"Entender el mercado de valores no debería ser un privilegio, sino una oportunidad al alcance de todos."</p>
+        <div class="featured-skills-label">Habilidades demostradas</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Redacción editorial</span>
+          <span class="skill-tag">Contenido institucional</span>
+          <span class="skill-tag">Narrativa financiera</span>
+          <span class="skill-tag">Audiencia amplia</span>
+          <span class="skill-tag">Coautoría profesional</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE GRID -->
+  <section>
+    <div class="section-header">
+      <span class="section-label">Contenido de análisis en LinkedIn</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="article-grid">
+      <div class="article-card">
+        <div class="card-platform">LinkedIn · Análisis de mercado</div>
+        <h3 class="card-title">Trade de mayo: lectura semanal del mercado</h3>
+        <p class="card-desc">Análisis de coyuntura con seguimiento de indicadores y tesis de posicionamiento para inversionistas. Formato short-form orientado a decisiones.</p>
+        <div class="card-footer">
+          <span>Mayo 2025</span>
+          <a href="https://www.linkedin.com/posts/abraham-cortes-_trade-de-mayo-en-la-segunda-semana-del-mes-activity-7466600608418910209-7k89" target="_blank" class="card-link">Ver post</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="card-platform">LinkedIn · Educación financiera</div>
+        <h3 class="card-title">Cultura financiera y el rol del Embajador BIVA</h3>
+        <p class="card-desc">Contenido de divulgación sobre el mercado bursátil mexicano dirigido a audiencias universitarias. Alcance orgánico destacado.</p>
+        <div class="card-footer">
+          <span>2025</span>
+          <a href="https://www.linkedin.com/posts/abraham-cortes-_culturafinanciera-educaciaejnfinanciera-embajadorbiva-ugcPost-7466952847033581568-_M28" target="_blank" class="card-link">Ver post</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="card-platform">LinkedIn · Macroeconomía</div>
+        <h3 class="card-title">Análisis económico Chile — IPSA</h3>
+        <p class="card-desc">Lectura macroeconómica de la economía chilena y su principal índice bursátil. Traducción de datos macro en insights para inversores.</p>
+        <div class="card-footer">
+          <span>2024</span>
+          <a href="https://www.linkedin.com/posts/abraham-cortes-_economia-chile-ipsa-activity-7416916683828649985-R-6_" target="_blank" class="card-link">Ver post</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="card-platform">LinkedIn · Evento institucional</div>
+        <h3 class="card-title">Colaboración GBM × Zona Financiera en UNAM</h3>
+        <p class="card-desc">Organización y difusión de evento de educación financiera con GBM como enlace universitario. Coordinado con equipo de Zona Financiera y equipo GBM.</p>
+        <div class="card-footer">
+          <span>2024</span>
+          <a href="https://www.linkedin.com/posts/abraham-cortes-_unam-gbm-educacionfinanciera-activity-7426644836033765376-0Hvl" target="_blank" class="card-link">Ver post</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="card-platform">LinkedIn · Finanzas personales</div>
+        <h3 class="card-title">Finanzas personales e inversión — divulgación BIVA</h3>
+        <p class="card-desc">Serie de contenido para democratizar el acceso a la inversión bursátil entre el público general no especializado.</p>
+        <div class="card-footer">
+          <span>2025</span>
+          <a href="https://www.linkedin.com/posts/abraham-cortes-_finanzaspersonales-educacionfinanciera-biva-activity-7452438519966281728-H8T8" target="_blank" class="card-link">Ver post</a>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="card-platform">LinkedIn · Mercados</div>
+        <h3 class="card-title">Seguimiento de mercados y coyuntura económica</h3>
+        <p class="card-desc">Análisis de indicadores clave (inflación, tasas, FX) con formato de newsletter corto para audiencias digitales.</p>
+        <div class="card-footer">
+          <span>2025</span>
+          <a href="https://www.linkedin.com/posts/abraham-cortes-_finanzas-educacionfinanciera-biva-activity-7439386281639481344-pjE9" target="_blank" class="card-link">Ver post</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-num">16K+</span>
+        <div class="stat-label">Vistas totales en publicaciones</div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">7+</span>
+        <div class="stat-label">Piezas de análisis publicadas</div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">2</span>
+        <div class="stat-label">Plataformas editoriales (Rankia + LinkedIn)</div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100+</span>
+        <div class="stat-label">Estudiantes alcanzados por Zona Financiera</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section id="habilidades">
+    <div class="section-header">
+      <span class="section-label">Capacidades demostradas</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h3 class="skill-block-title">Análisis macroeconómico</h3>
+        <p class="skill-block-desc">Seguimiento de indicadores clave: inflación, tasas de interés (Banxico / Fed), tipo de cambio FX, y coyuntura de mercados emergentes. Formación con académicos del Banco de México y ex CEPAL.</p>
+      </div>
+      <div class="skill-block">
+        <h3 class="skill-block-title">Creación de contenido financiero</h3>
+        <p class="skill-block-desc">Redacción de análisis, newsletters, guiones y posts para audiencias digitales e institucionales. Publicaciones en Rankia México con coautoría profesional. Experiencia en cápsulas de radio y formatos podcast.</p>
+      </div>
+      <div class="skill-block">
+        <h3 class="skill-block-title">Herramientas de análisis</h3>
+        <p class="skill-block-desc">Excel avanzado, Python, RStudio, Power BI, REFINITIV, TradingView, Economatica. IA aplicada a eficiencia editorial (síntesis, estructuración de guiones). CFA Foundations aprobado.</p>
+      </div>
+      <div class="skill-block">
+        <h3 class="skill-block-title">Comunicación bilingüe</h3>
+        <p class="skill-block-desc">Redacción y edición en español e inglés (C1). Experiencia en entornos multiculturales (Embajada Británica, intercambio SKKU Corea del Sur). Narrativa clara orientada a resultados y audiencias diversas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section" id="contacto">
+    <div>
+      <div class="cta-title">¿Hablamos sobre análisis económico?</div>
+      <div class="cta-sub">Disponible para roles de research, contenido financiero y análisis macroeconómico · CDMX</div>
+    </div>
+    <a href="mailto:Abrahamcortescontreras@gmail.com" class="cta-btn">Contactar</a>
+  </div>
+
+</main>
+
+<footer>
+  <span>Abraham Eliel Cortes Contreras · CDMX, México · 2026</span>
+  <span>
+    <a href="https://www.linkedin.com/in/abraham-cortes-" target="_blank">LinkedIn</a> · 
+    <a href="https://www.rankia.mx/blog/caminodeleconomista" target="_blank">Rankia</a>
+  </span>
+</footer>
+
+</body>
+</html>
