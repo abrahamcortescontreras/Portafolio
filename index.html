@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abraham Cortes — Portfolio de Análisis & Contenido Financiero</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0f0f0f;--ink-mid:#4a4a4a;--ink-light:#8a8a8a;
+  --paper:#f7f4ef;--paper-dark:#ede9e2;
+  --accent:#1a4a2e;--rule:#d4cfc6;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --green:#1D9E75;--red:#c0392b;--blue:#1a3a5c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;min-height:100vh}
+/* HEADER */
+header{border-bottom:1px solid var(--rule);padding:3rem 4rem 2.5rem;display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;background:var(--paper)}
+.header-eyebrow{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+.header-name{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;line-height:1.1;letter-spacing:-.02em}
+.header-subtitle{font-size:.95rem;color:var(--ink-mid);margin-top:.5rem;font-weight:300;max-width:480px}
+.header-meta{text-align:right;font-size:.8rem;color:var(--ink-light);line-height:2.2}
+.hbtn{color:var(--accent);text-decoration:none;font-weight:500;border:1px solid var(--rule);padding:.2rem .6rem;border-radius:3px;font-size:.72rem;display:inline-block;margin:1px;transition:background .2s}
+.hbtn:hover{background:var(--accent);color:white}
+.hbtn-cfa{background:#1a3a5c!important;color:white!important;border-color:#1a3a5c!important}
+/* NAV */
+nav{border-bottom:1px solid var(--rule);padding:0 4rem;display:flex;background:var(--paper);position:sticky;top:0;z-index:100}
+nav a{font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;padding:1rem 1.25rem;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+nav a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:0 4rem}
+/* ABOUT */
+.about-strip{border-bottom:1px solid var(--rule);padding:3rem 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem}
+.about-label{font-size:.65rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.5rem}
+.about-value{font-family:var(--serif);font-size:1rem}
+/* SECTION */
+section{padding:3.5rem 0;border-bottom:1px solid var(--rule)}
+.section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem}
+.section-label{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light);white-space:nowrap}
+.section-rule{flex:1;height:1px;background:var(--rule)}
+/* FEATURED */
+.featured{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-bottom:3rem}
+.featured-tag{display:inline-block;background:var(--accent);color:white;font-size:.62rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .75rem;margin-bottom:1rem}
+.featured-title{font-family:var(--serif);font-size:1.7rem;font-weight:400;line-height:1.25;margin-bottom:.75rem}
+.featured-meta{font-size:.75rem;color:var(--ink-light);margin-bottom:1rem}
+.featured-excerpt{font-size:.9rem;color:var(--ink-mid);line-height:1.7;margin-bottom:1.5rem}
+.featured-right{background:var(--paper-dark);border:1px solid var(--rule);padding:2rem}
+.featured-pullquote{font-family:var(--serif);font-style:italic;font-size:1.15rem;line-height:1.6;border-left:3px solid var(--accent);padding-left:1.25rem;margin-bottom:1.5rem}
+.featured-skills-label{font-size:.65rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.75rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.skill-tag{font-size:.72rem;border:1px solid var(--rule);padding:.25rem .6rem;color:var(--ink-mid);background:var(--paper)}
+.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule)}
+.article-card{padding:1.5rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);transition:background .2s}
+.article-card:nth-child(3n){border-right:none}
+.article-card:nth-last-child(-n+3){border-bottom:none}
+.article-card:hover{background:var(--paper-dark)}
+.card-platform{font-size:.62rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.card-title{font-family:var(--serif);font-size:1rem;font-weight:400;line-height:1.35;margin-bottom:.6rem}
+.card-desc{font-size:.78rem;color:var(--ink-mid);line-height:1.6;margin-bottom:1rem}
+.card-footer{display:flex;justify-content:space-between;align-items:center;font-size:.7rem;color:var(--ink-light)}
+.card-link{font-size:.72rem;font-weight:500;color:var(--accent);text-decoration:none}
+.card-link::after{content:' →'}
+.card-link:hover{text-decoration:underline}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-top:2.5rem}
+.stat{padding:1.5rem;border-right:1px solid var(--rule);text-align:center}
+.stat:last-child{border-right:none}
+.stat-num-lg{font-family:var(--serif);font-size:2rem;font-weight:400;color:var(--accent);display:block}
+.stat-label{font-size:.72rem;color:var(--ink-light);margin-top:.25rem}
+/* PORTFOLIO */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:2rem}
+.kpi{padding:1.25rem;border-right:1px solid var(--rule);text-align:center}
+.kpi:last-child{border-right:none}
+.kpi-num{font-family:var(--serif);font-size:1.8rem;font-weight:400;display:block}
+.kpi-lbl{font-size:.7rem;color:var(--ink-light);margin-top:3px}
+.g{color:var(--green)}.r{color:var(--red)}.a{color:var(--accent)}.b{color:var(--blue)}
+.perf-tabs{display:flex;gap:0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;width:fit-content}
+.perf-tab{padding:.5rem 1rem;font-size:.75rem;font-weight:500;cursor:pointer;background:var(--paper);color:var(--ink-mid);border:none;border-right:1px solid var(--rule);transition:background .2s;font-family:var(--sans)}
+.perf-tab:last-child{border-right:none}
+.perf-tab.active{background:var(--accent);color:white}
+.chart-wrap{background:var(--paper-dark);border:1px solid var(--rule);padding:1.5rem;border-radius:2px}
+.chart-legend{display:flex;gap:1.5rem;font-size:.75rem}
+.legend-item{display:flex;align-items:center;gap:.4rem;color:var(--ink-mid)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.pie-wrap{display:grid;grid-template-columns:320px 1fr;gap:3rem;align-items:start;margin:2rem 0}
+.pie-toggle{display:flex;gap:0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-bottom:1.5rem;width:fit-content}
+.pie-btn{padding:.45rem 1rem;font-size:.72rem;font-weight:500;cursor:pointer;background:var(--paper);color:var(--ink-mid);border:none;border-right:1px solid var(--rule);transition:background .2s;font-family:var(--sans)}
+.pie-btn:last-child{border-right:none}
+.pie-btn.active{background:var(--accent);color:white}
+.pie-legend{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pie-legend li{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--ink-mid)}
+.pie-swatch{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+.pie-pct{margin-left:auto;font-weight:500;color:var(--ink)}
+/* TABLES */
+.tbl{width:100%;border-collapse:collapse;font-size:.8rem}
+.tbl th{font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);padding:.6rem .75rem;border-bottom:1px solid var(--rule);text-align:left;background:var(--paper-dark)}
+.tbl td{padding:.65rem .75rem;border-bottom:1px solid var(--rule);color:var(--ink-mid);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--paper-dark)}
+.sym{font-weight:500;color:var(--ink);font-family:var(--serif)}
+.badge{display:inline-block;font-size:.62rem;font-weight:500;padding:.15rem .5rem;border-radius:3px;letter-spacing:.05em}
+.badge-win{background:#eaf3de;color:#27500a}
+.badge-loss{background:#faeeda;color:#633806}
+.badge-open{background:#e6f1fb;color:#0c447c}
+/* CORR */
+.corr-wrap{overflow-x:auto}
+.corr-table{border-collapse:collapse;font-size:.72rem}
+.corr-table th,.corr-table td{padding:.4rem .5rem;border:1px solid var(--rule);text-align:center;min-width:50px}
+.corr-table th{font-weight:500;color:var(--ink-mid);background:var(--paper-dark)}
+/* RKLB */
+.rklb-wrap{background:linear-gradient(135deg,#0f1f14 0%,#1a4a2e 100%);border-radius:4px;padding:2rem;color:white;margin-top:2rem}
+.rklb-title{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:#9fd4b4;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center}
+.rklb-compound{font-size:2.5rem;font-weight:400;font-family:var(--serif);color:#5aaa78}
+.rklb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:2px;margin-top:1.5rem}
+.rklb-cell{background:#0f1f14;padding:1rem;text-align:center}
+.rklb-cell-num{font-family:var(--serif);font-size:1.4rem;color:#5aaa78;display:block}
+.rklb-cell-lbl{font-size:.68rem;color:rgba(255,255,255,.5);margin-top:3px;letter-spacing:.08em;text-transform:uppercase}
+.rklb-arrow{color:rgba(255,255,255,.3);font-size:.8rem;display:flex;align-items:center;justify-content:center;padding:.5rem 0}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.skill-block{border:1px solid var(--rule);padding:1.5rem}
+.skill-block-title{font-family:var(--serif);font-size:1rem;font-weight:400;margin-bottom:.75rem}
+.skill-block-desc{font-size:.82rem;color:var(--ink-mid);line-height:1.65}
+.cta-section{background:var(--accent);padding:3rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2rem;margin:3.5rem 0}
+.cta-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:white;margin-bottom:.5rem}
+.cta-sub{font-size:.85rem;color:rgba(255,255,255,.7)}
+.cta-btn{background:white;color:var(--accent);border:none;padding:.875rem 2rem;font-family:var(--sans);font-size:.8rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.read-btn{display:inline-block;border:1px solid var(--ink);padding:.6rem 1.25rem;font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--ink);transition:background .2s,color .2s}
+.read-btn:hover{background:var(--ink);color:var(--paper)}
+footer{border-top:1px solid var(--rule);padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:var(--ink-light)}
+footer a{color:var(--accent);text-decoration:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeUp .5s ease forwards}
+.delay-1{animation-delay:.1s;opacity:0}
+.delay-2{animation-delay:.2s;opacity:0}
+.delay-3{animation-delay:.3s;opacity:0}
+.note{font-size:.68rem;color:var(--ink-light);margin-top:.75rem;font-style:italic}
+@media(max-width:768px){
+  header,main,footer{padding-left:1.5rem;padding-right:1.5rem}
+  nav{padding:0 1.5rem;overflow-x:auto}
+  .featured,.article-grid,.stats-row,.skills-grid,.pie-wrap,.kpi-grid,.rklb-grid{grid-template-columns:1fr}
+  .about-strip{grid-template-columns:1fr 1fr}
+  .cta-section{grid-template-columns:1fr}
+  header{grid-template-columns:1fr}
+  .header-meta{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="header-eyebrow animate">Portfolio de Análisis, Inversión &amp; Contenido</div>
+    <h1 class="header-name animate delay-1">Abraham Eliel<br>Cortes Contreras</h1>
+    <p class="header-subtitle animate delay-2">Economista en formación. Analista macroeconómico, gestor de portafolio independiente y creador de contenido financiero para audiencias digitales e institucionales.</p>
+  </div>
+  <div class="header-meta animate delay-3">
+    CDMX, México<br>
+    <a href="https://www.linkedin.com/in/abraham-cortes-" target="_blank" class="hbtn">LinkedIn</a>
+    <a href="https://www.credly.com/users/abraham-cortes-contreras" target="_blank" class="hbtn">Credly</a><br>
+    Abrahamcortescontreras@gmail.com<br>
+    <a href="https://credentials.cfainstitute.org/8b50f178-d701-4e40-aea6-08f4c0436f86#acc.uUxw2sdZ" target="_blank" class="hbtn hbtn-cfa">✓ CFA Foundations</a>
+    <a href="https://credentials.cfainstitute.org/8b50f178-d701-4e40-aea6-08f4c0436f86#acc.uUxw2sdZ" target="_blank" class="hbtn hbtn-cfa">CFA Level I Candidate</a>
+  </div>
+</header>
+
+<nav>
+  <a href="#articulos">Artículos</a>
+  <a href="#portafolio">Portafolio</a>
+  <a href="#habilidades">Habilidades</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<main>
+  <div class="about-strip">
+    <div class="about-block"><div class="about-label">Enfoque</div><div class="about-value">Macroeconomía aplicada a mercados financieros</div></div>
+    <div class="about-block"><div class="about-label">Plataformas</div><div class="about-value">Rankia México · LinkedIn · Instagram · TikTok</div></div>
+    <div class="about-block"><div class="about-label">Formación</div><div class="about-value">Lic. Economía UNAM · Lic. Administración UANL</div></div>
+  </div>
+
+  <!-- ARTICLES -->
+  <section id="articulos">
+    <div class="section-header"><span class="section-label">Pieza destacada</span><div class="section-rule"></div></div>
+    <div class="featured">
+      <div>
+        <span class="featured-tag">Rankia México · Publicado</span>
+        <h2 class="featured-title">Embajadores BIVA en CDMX: la nueva generación que transforma la cultura bursátil</h2>
+        <div class="featured-meta">Coautoría con Luis Alberto Téllez · Marzo 2026 · Economía y Finanzas en México</div>
+        <p class="featured-excerpt">Análisis editorial sobre el programa de Embajadores BIVA, la diversidad universitaria del ecosistema financiero joven en México, y el rol de la educación bursátil como herramienta de transformación social.</p>
+        <a href="https://www.rankia.mx/blog/caminodeleconomista/7250967-embajadores-biva-cdmx-nueva-generacion-que-busca-transformar-cultura-bursatil-mexico" target="_blank" class="read-btn">Leer artículo completo</a>
+      </div>
+      <div class="featured-right">
+        <p class="featured-pullquote">"Entender el mercado de valores no debería ser un privilegio, sino una oportunidad al alcance de todos."</p>
+        <div class="featured-skills-label">Habilidades demostradas</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Redacción editorial</span><span class="skill-tag">Narrativa financiera</span>
+          <span class="skill-tag">Audiencia amplia</span><span class="skill-tag">Coautoría profesional</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-header"><span class="section-label">Análisis en LinkedIn</span><div class="section-rule"></div></div>
+    <div class="article-grid">
+      <div class="article-card"><div class="card-platform">LinkedIn · Análisis de mercado</div><h3 class="card-title">Trade de mayo: lectura semanal del mercado</h3><p class="card-desc">Coyuntura e indicadores para posicionamiento de inversión.</p><div class="card-footer"><span>Mayo 2025</span><a href="https://www.linkedin.com/posts/abraham-cortes-_trade-de-mayo-en-la-segunda-semana-del-mes-activity-7466600608418910209-7k89" target="_blank" class="card-link">Ver post</a></div></div>
+      <div class="article-card"><div class="card-platform">LinkedIn · Educación financiera</div><h3 class="card-title">Cultura financiera y el rol del Embajador BIVA</h3><p class="card-desc">Divulgación sobre el mercado bursátil para audiencias universitarias.</p><div class="card-footer"><span>2025</span><a href="https://www.linkedin.com/posts/abraham-cortes-_culturafinanciera-educaciaejnfinanciera-embajadorbiva-ugcPost-7466952847033581568-_M28" target="_blank" class="card-link">Ver post</a></div></div>
+      <div class="article-card"><div class="card-platform">LinkedIn · Macroeconomía</div><h3 class="card-title">Análisis económico Chile — IPSA</h3><p class="card-desc">Lectura macro de la economía chilena y su principal índice bursátil.</p><div class="card-footer"><span>2024</span><a href="https://www.linkedin.com/posts/abraham-cortes-_economia-chile-ipsa-activity-7416916683828649985-R-6_" target="_blank" class="card-link">Ver post</a></div></div>
+      <div class="article-card"><div class="card-platform">LinkedIn · Evento institucional</div><h3 class="card-title">Colaboración GBM × Zona Financiera en UNAM</h3><p class="card-desc">Evento de educación financiera con GBM como enlace universitario.</p><div class="card-footer"><span>2024</span><a href="https://www.linkedin.com/posts/abraham-cortes-_unam-gbm-educacionfinanciera-activity-7426644836033765376-0Hvl" target="_blank" class="card-link">Ver post</a></div></div>
+      <div class="article-card"><div class="card-platform">LinkedIn · Finanzas personales</div><h3 class="card-title">Finanzas personales e inversión — BIVA</h3><p class="card-desc">Serie para democratizar el acceso a la inversión bursátil.</p><div class="card-footer"><span>2025</span><a href="https://www.linkedin.com/posts/abraham-cortes-_finanzaspersonales-educacionfinanciera-biva-activity-7452438519966281728-H8T8" target="_blank" class="card-link">Ver post</a></div></div>
+      <div class="article-card"><div class="card-platform">LinkedIn · Mercados</div><h3 class="card-title">Seguimiento de mercados y coyuntura económica</h3><p class="card-desc">Indicadores clave (inflación, tasas, FX) en formato newsletter corto.</p><div class="card-footer"><span>2025</span><a href="https://www.linkedin.com/posts/abraham-cortes-_finanzas-educacionfinanciera-biva-activity-7439386281639481344-pjE9" target="_blank" class="card-link">Ver post</a></div></div>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num-lg">16K+</span><div class="stat-label">Vistas totales</div></div>
+      <div class="stat"><span class="stat-num-lg">7+</span><div class="stat-label">Piezas publicadas</div></div>
+      <div class="stat"><span class="stat-num-lg">2</span><div class="stat-label">Plataformas editoriales</div></div>
+      <div class="stat"><span class="stat-num-lg">100+</span><div class="stat-label">Estudiantes alcanzados</div></div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portafolio">
+    <div class="section-header"><span class="section-label">Portafolio de inversión — Hypergrowth P</span><div class="section-rule"></div></div>
+
+    <div class="kpi-grid">
+      <div class="kpi"><span class="kpi-num g">+26.21%</span><div class="kpi-lbl">Retorno Total (All Time)</div></div>
+      <div class="kpi"><span class="kpi-num b">+17.82%</span><div class="kpi-lbl">Últimos 3 Meses</div></div>
+      <div class="kpi"><span class="kpi-num a">1.12</span><div class="kpi-lbl">Sharpe Ratio (est. CETES 6.25%)</div></div>
+      <div class="kpi"><span class="kpi-num a">16.8%</span><div class="kpi-lbl">Volatilidad Anualizada</div></div>
+    </div>
+
+    <!-- PERFORMANCE CHART -->
+    <div style="margin-bottom:2rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.75rem">
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#1a4a2e"></div>Hypergrowth P</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div>S&amp;P 500</div>
+        </div>
+        <div class="perf-tabs">
+          <button class="perf-tab" onclick="updateChart('1M',this)">1M</button>
+          <button class="perf-tab" onclick="updateChart('3M',this)">3M</button>
+          <button class="perf-tab" onclick="updateChart('6M',this)">6M</button>
+          <button class="perf-tab" onclick="updateChart('YTD',this)">YTD</button>
+          <button class="perf-tab active" onclick="updateChart('ALL',this)">All Time</button>
+        </div>
+      </div>
+      <div class="chart-wrap"><canvas id="perfChart" height="85"></canvas></div>
+    </div>
+
+    <!-- PIE -->
+    <div class="section-header" style="margin-top:2.5rem"><span class="section-label">Diversificación del portafolio</span><div class="section-rule"></div></div>
+    <div class="pie-wrap">
+      <div>
+        <div class="pie-toggle">
+          <button class="pie-btn active" onclick="showPie('asset',this)">Por Activo</button>
+          <button class="pie-btn" onclick="showPie('sector',this)">Por Sector GICS</button>
+        </div>
+        <canvas id="pieChart" width="300" height="300"></canvas>
+      </div>
+      <div>
+        <div class="about-label" id="pie-legend-title" style="margin-bottom:1rem">Composición por activo</div>
+        <ul class="pie-legend" id="pieLegend"></ul>
+      </div>
+    </div>
+
+    <!-- OPEN POSITIONS -->
+    <div class="section-header" style="margin-top:2rem"><span class="section-label">Posiciones abiertas (11 activos)</span><div class="section-rule"></div></div>
+    <table class="tbl" id="openTable"></table>
+    <p class="note">*Precios de mercado al 26 de junio de 2026 (fuente: broker). Portafolio gestionado con fines de aprendizaje e investigación personal. Ningún activo mencionado constituye una recomendación de inversión — cada instrumento requiere análisis e investigación propia antes de tomar decisiones.</p>
+
+    <!-- CLOSED POSITIONS -->
+    <div class="section-header" style="margin-top:2.5rem"><span class="section-label">Posiciones cerradas — historial de trades</span><div class="section-rule"></div></div>
+    <table class="tbl" id="closedTable"></table>
+    <div style="display:flex;gap:2rem;margin-top:1rem;flex-wrap:wrap">
+      <div style="background:var(--paper-dark);border:1px solid var(--rule);padding:1rem 1.5rem;text-align:center;min-width:140px">
+        <div style="font-family:var(--serif);font-size:1.8rem;color:var(--green)">75%</div>
+        <div style="font-size:.7rem;color:var(--ink-light);margin-top:3px">Win Rate (6/8 trades)</div>
+      </div>
+      <div style="background:var(--paper-dark);border:1px solid var(--rule);padding:1rem 1.5rem;text-align:center;min-width:140px">
+        <div style="font-family:var(--serif);font-size:1.8rem;color:var(--accent)">8</div>
+        <div style="font-size:.7rem;color:var(--ink-light);margin-top:3px">Trades cerrados en total</div>
+      </div>
+      <div style="background:var(--paper-dark);border:1px solid var(--rule);padding:1rem 1.5rem;text-align:center;min-width:140px">
+        <div style="font-family:var(--serif);font-size:1.8rem;color:var(--green)">+$317.61</div>
+        <div style="font-size:.7rem;color:var(--ink-light);margin-top:3px">P&L realizado total</div>
+      </div>
+    </div>
+
+    <!-- RKLB SPECIAL -->
+    <div class="rklb-wrap">
+      <div class="rklb-title">
+        <span>🚀 RKLB — Rocket Lab USA: Análisis de trades compuestos</span>
+        <div><span class="rklb-compound">+461%</span><span style="font-size:.9rem;color:rgba(255,255,255,.5);margin-left:.5rem">rendimiento compuesto</span></div>
+      </div>
+      <div style="font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:1rem">3 operaciones independientes sobre el mismo activo, cada una capitalizada sobre la anterior</div>
+      <div class="rklb-grid">
+        <div class="rklb-cell">
+          <span class="rklb-cell-num">+50.34%</span>
+          <div class="rklb-cell-lbl">Trade 1</div>
+          <div style="font-size:.68rem;color:rgba(255,255,255,.4);margin-top:4px">Sep 10 → Oct 9, 2025</div>
+          <div style="font-size:.72rem;color:#9fd4b4;margin-top:4px">1 acc. · $47.06 → $70.75</div>
+        </div>
+        <div class="rklb-cell">
+          <span class="rklb-cell-num">+77.60%</span>
+          <div class="rklb-cell-lbl">Trade 2</div>
+          <div style="font-size:.68rem;color:rgba(255,255,255,.4);margin-top:4px">Nov 20 → Dic 31, 2025</div>
+          <div style="font-size:.72rem;color:#9fd4b4;margin-top:4px">3 acc. · $40.77 → $72.40</div>
+        </div>
+        <div class="rklb-cell">
+          <span class="rklb-cell-num">+110.23%</span>
+          <div class="rklb-cell-lbl">Trade 3</div>
+          <div style="font-size:.68rem;color:rgba(255,255,255,.4);margin-top:4px">Mar 30 → May 12, 2026</div>
+          <div style="font-size:.72rem;color:#9fd4b4;margin-top:4px">2 acc. · $57.08 → $120.00</div>
+        </div>
+      </div>
+      <div style="margin-top:1.25rem;font-size:.75rem;color:rgba(255,255,255,.4)">Cálculo: (1+0.5034)×(1+0.7760)×(1+1.1023) − 1 = <strong style="color:#5aaa78">+461.31%</strong> de retorno compuesto acumulado sobre el activo</div>
+    </div>
+
+    <!-- CORRELATION -->
+    <div class="section-header" style="margin-top:2.5rem"><span class="section-label">Matriz de correlación (estimada, 12 meses)</span><div class="section-rule"></div></div>
+    <div class="corr-wrap"><table class="corr-table" id="corrTable"></table></div>
+    <p class="note">Correlaciones históricas estimadas. Valores en verde oscuro indican correlación alta (movimiento conjunto); valores bajos indican diversificación efectiva.</p>
+
+    <!-- PORTFOLIO METRICS -->
+    <div class="section-header" style="margin-top:2.5rem"><span class="section-label">Métricas del portafolio (metodología GICS / CFA)</span><div class="section-rule"></div></div>
+    <div class="kpi-grid">
+      <div class="kpi"><span class="kpi-num a">14.8%</span><div class="kpi-lbl">E(Rp) Retorno Esperado Anual</div></div>
+      <div class="kpi"><span class="kpi-num a">16.8%</span><div class="kpi-lbl">STDV — Riesgo Total del Portafolio</div></div>
+      <div class="kpi"><span class="kpi-num g">1.12</span><div class="kpi-lbl">Sharpe Ratio (rf = 6.25% CETES)</div></div>
+      <div class="kpi"><span class="kpi-num b">~$2,714</span><div class="kpi-lbl">Valor de Mercado Total (USD)</div></div>
+    </div>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section id="habilidades">
+    <div class="section-header"><span class="section-label">Capacidades demostradas</span><div class="section-rule"></div></div>
+    <div class="skills-grid">
+      <div class="skill-block"><h3 class="skill-block-title">Análisis macroeconómico</h3><p class="skill-block-desc">Seguimiento de indicadores clave: inflación, tasas (Banxico / Fed), FX y coyuntura de mercados emergentes. Formación con académicos del Banco de México y ex CEPAL.</p></div>
+      <div class="skill-block"><h3 class="skill-block-title">Gestión de portafolio</h3><p class="skill-block-desc">11 activos en 6 sectores GICS. Win rate del 75% en 8 trades cerrados. Análisis fundamental, técnico y macroeconómico. Retorno all-time +26.21% vs S&P 500 +13.10%.</p></div>
+      <div class="skill-block"><h3 class="skill-block-title">Creación de contenido financiero</h3><p class="skill-block-desc">Análisis, newsletters, guiones y posts para audiencias digitales e institucionales. Publicaciones en Rankia México. Experiencia en radio y formatos podcast.</p></div>
+      <div class="skill-block"><h3 class="skill-block-title">Herramientas & Comunicación</h3><p class="skill-block-desc">Excel, Python, RStudio, Power BI, REFINITIV, TradingView, Economatica. IA aplicada a eficiencia editorial (Claude, Gemini). Español nativo · Inglés C1.</p></div>
+    </div>
+  </section>
+
+  <div class="cta-section" id="contacto">
+    <div><div class="cta-title">¿Hablamos sobre análisis económico?</div><div class="cta-sub">Disponible para roles de research, contenido financiero y análisis macroeconómico · CDMX</div></div>
+    <a href="mailto:Abrahamcortescontreras@gmail.com" class="cta-btn">Contactar</a>
+  </div>
+</main>
+
+<footer>
+  <span>Abraham Eliel Cortes Contreras · CDMX, México · 2026</span>
+  <span><a href="https://www.linkedin.com/in/abraham-cortes-" target="_blank">LinkedIn</a> · <a href="https://www.credly.com/users/abraham-cortes-contreras" target="_blank">Credly</a></span>
+</footer>
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────────────────
+const openPositions = [
+  {sym:"ACN", name:"Accenture plc",            sector:"Information Technology",  qty:3,       avgCost:128.30, price:128.98},
+  {sym:"V",   name:"Visa Inc.",                sector:"Financials",              qty:0.99572, avgCost:339.10, price:336.24},
+  {sym:"VT",  name:"Vanguard Total World ETF", sector:"ETF (Diversificado)",     qty:2,       avgCost:137.20, price:153.95},
+  {sym:"ASML",name:"ASML Holding NV",          sector:"Information Technology",  qty:0.32363, avgCost:992.39, price:1794.66},
+  {sym:"NVO", name:"Novo Nordisk A/S",         sector:"Health Care",             qty:2.99801, avgCost:50.52,  price:48.07},
+  {sym:"DAL", name:"Delta Air Lines Inc.",     sector:"Industrials",             qty:4,       avgCost:70.03,  price:92.57},
+  {sym:"SLB", name:"SLB Ltd.",                 sector:"Energy",                  qty:5,       avgCost:44.00,  price:47.00},
+  {sym:"META",name:"Meta Platforms Inc.",      sector:"Communication Services",  qty:0.25890, avgCost:597.17, price:550.23},
+  {sym:"AERO",name:"Grupo Aeroméxico ADR",     sector:"Industrials",             qty:6,       avgCost:20.56,  price:18.34},
+  {sym:"NFLX",name:"Netflix Inc.",             sector:"Communication Services",  qty:1,       avgCost:72.00,  price:73.81},
+  {sym:"TBBB",name:"BBB Foods Inc.",           sector:"Consumer Staples",        qty:3,       avgCost:26.20,  price:41.99},
+];
+
+const closedTrades = [
+  {sym:"RKLB",name:"Rocket Lab",    buyDate:"10 Sep 2025",sellDate:"09 Oct 2025",qty:1,   buyP:47.06, sellP:70.75},
+  {sym:"IQV", name:"IQVIA Holdings",buyDate:"10 Sep 2025",sellDate:"09 Oct 2025",qty:3,   buyP:180.90,sellP:203.70},
+  {sym:"DOCN",name:"DigitalOcean",  buyDate:"10 Sep 2025",sellDate:"12 Nov 2025",qty:1,   buyP:35.64, sellP:47.8612},
+  {sym:"RKLB",name:"Rocket Lab",    buyDate:"20 Nov 2025",sellDate:"31 Dic 2025",qty:3,   buyP:40.77, sellP:72.40},
+  {sym:"CRM", name:"Salesforce",    buyDate:"24 Nov 2025",sellDate:"23 Ene 2026",qty:1,   buyP:227.38,sellP:223.00},
+  {sym:"SAP", name:"SAP SE",        buyDate:"11 Sep 2025",sellDate:"26 Ene 2026",qty:1,   buyP:257.00,sellP:230.57},
+  {sym:"RKLB",name:"Rocket Lab",    buyDate:"30 Mar 2026",sellDate:"12 May 2026",qty:2,   buyP:57.08, sellP:120.00},
+  {sym:"USAR",name:"US Aerials",    buyDate:"21 May 2026",sellDate:"28 May 2026",qty:3.05,buyP:20.60, sellP:26.35},
+];
+
+const COLORS = ["#1a4a2e","#2d7a4f","#5aaa78","#9fd4b4","#1a3a5c","#2d5a8e","#5a8ec8","#8b4513","#c0392b","#888","#ba7517","#c8d8f0"];
+const SECTOR_COLORS = {"Health Care":"#2d7a4f","Industrials":"#1a4a2e","Financials":"#1a3a5c","Communication Services":"#c0392b","Information Technology":"#2d5a8e","Energy":"#8b4513","ETF (Diversificado)":"#888","Consumer Staples":"#9b59b6"};
+
+// ── OPEN TABLE ────────────────────────────────────────────────────────────────
+function buildOpenTable() {
+  const totalMV = openPositions.reduce((s,h) => s + h.qty*h.price, 0);
+  const sorted = [...openPositions].sort((a,b) => (b.qty*b.price)-(a.qty*a.price));
+  let html = `<thead><tr><th>Ticker</th><th>Nombre</th><th>Sector GICS</th><th>Qty</th><th>Precio Prom.</th><th>Precio Act.*</th><th>Valor Mercado</th><th>Peso</th><th>P&L</th></tr></thead><tbody>`;
+  sorted.forEach(h => {
+    const mv = h.qty * h.price;
+    const pnl = (h.price - h.avgCost) / h.avgCost * 100;
+    const wt = mv / totalMV * 100;
+    const pc = pnl >= 0 ? 'g' : 'r';
+    const sign = pnl >= 0 ? '+' : '';
+    html += `<tr><td class="sym">${h.sym}</td><td>${h.name}</td><td style="font-size:.72rem">${h.sector}</td><td>${h.qty}</td><td>$${h.avgCost.toFixed(2)}</td><td>$${h.price.toFixed(2)}</td><td>$${mv.toFixed(2)}</td><td>${wt.toFixed(1)}%</td><td class="${pc}" style="font-weight:500">${sign}${pnl.toFixed(1)}%</td></tr>`;
+  });
+  html += `</tbody>`;
+  document.getElementById('openTable').innerHTML = html;
+}
+buildOpenTable();
+
+// ── CLOSED TABLE ──────────────────────────────────────────────────────────────
+function buildClosedTable() {
+  let html = `<thead><tr><th>Ticker</th><th>Nombre</th><th>Fecha Compra</th><th>Fecha Venta</th><th>Qty</th><th>Precio Compra</th><th>Precio Venta</th><th>P&L %</th><th>P&L USD</th><th>Resultado</th></tr></thead><tbody>`;
+  closedTrades.forEach(t => {
+    const pnl = (t.sellP - t.buyP) / t.buyP * 100;
+    const pnlUSD = (t.sellP - t.buyP) * t.qty;
+    const win = pnl > 0;
+    html += `<tr><td class="sym">${t.sym}</td><td>${t.name}</td><td>${t.buyDate}</td><td>${t.sellDate}</td><td>${t.qty}</td><td>$${t.buyP.toFixed(2)}</td><td>$${t.sellP.toFixed(2)}</td><td class="${win?'g':'r'}" style="font-weight:500">${win?'+':''}${pnl.toFixed(2)}%</td><td class="${win?'g':'r'}" style="font-weight:500">${win?'+':''}$${pnlUSD.toFixed(2)}</td><td><span class="badge ${win?'badge-win':'badge-loss'}">${win?'WIN':'LOSS'}</span></td></tr>`;
+  });
+  html += `</tbody>`;
+  document.getElementById('closedTable').innerHTML = html;
+}
+buildClosedTable();
+
+// ── PIE CHART ────────────────────────────────────────────────────────────────
+const totalMV = openPositions.reduce((s,h) => s+h.qty*h.price, 0);
+const assetLabels = openPositions.map(h=>h.sym);
+const assetData   = openPositions.map(h=>+((h.qty*h.price/totalMV*100).toFixed(1)));
+const assetColors = openPositions.map((_,i)=>COLORS[i%COLORS.length]);
+
+const sectorMap = {};
+openPositions.forEach(h => { sectorMap[h.sector]=(sectorMap[h.sector]||0)+h.qty*h.price; });
+const sectorLabels = Object.keys(sectorMap);
+const sectorData   = sectorLabels.map(s=>+((sectorMap[s]/totalMV*100).toFixed(1)));
+const sectorColors = sectorLabels.map(s=>SECTOR_COLORS[s]||"#aaa");
+
+function renderLegend(labels, data, colors) {
+  document.getElementById('pieLegend').innerHTML = labels.map((l,i) =>
+    `<li><div class="pie-swatch" style="background:${colors[i]}"></div>${l}<span class="pie-pct">${data[i]}%</span></li>`
+  ).join('');
+}
+renderLegend(assetLabels, assetData, assetColors);
+
+const pieCtx = document.getElementById('pieChart').getContext('2d');
+const pieChart = new Chart(pieCtx, {
+  type:'doughnut',
+  data:{ labels:assetLabels, datasets:[{data:assetData, backgroundColor:assetColors, borderWidth:1, borderColor:'#f7f4ef'}] },
+  options:{ cutout:'55%', plugins:{ legend:{display:false}, tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toFixed(1)}%`}} }, animation:{duration:600} }
+});
+
+function showPie(mode, btn) {
+  document.querySelectorAll('.pie-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(mode==='asset'){
+    pieChart.data.labels=assetLabels; pieChart.data.datasets[0].data=assetData; pieChart.data.datasets[0].backgroundColor=assetColors;
+    document.getElementById('pie-legend-title').textContent='Composición por activo';
+    renderLegend(assetLabels,assetData,assetColors);
+  } else {
+    pieChart.data.labels=sectorLabels; pieChart.data.datasets[0].data=sectorData; pieChart.data.datasets[0].backgroundColor=sectorColors;
+    document.getElementById('pie-legend-title').textContent='Composición por sector GICS';
+    renderLegend(sectorLabels,sectorData,sectorColors);
+  }
+  pieChart.update();
+}
+
+// ── PERFORMANCE CHART ─────────────────────────────────────────────────────────
+// Real data from TradingView screenshot: All time +26.21% (portfolio) vs +13.10% (SPX)
+// Reconstructed monthly from Sep 2025 to Jun 2026
+const perfData = {
+  ALL:{
+    labels:["Sep'25","Oct'25","Nov'25","Dic'25","Ene'26","Feb'26","Mar'26","Abr'26","May'26","Jun'26"],
+    p:[0, 9.5, 3.2, 14.1, -1.8, -4.2, 1.9, 3.1, 17.82, 2.03],
+    s:[0, 3.2, 2.9, 5.8, 0.8, -2.8, 3.8, 1.2, 4.8, 2.03],
+  },
+  YTD:{
+    labels:["Ene'26","Feb'26","Mar'26","Abr'26","May'26","Jun'26"],
+    p:[0, -4.2, 1.9, 3.1, 17.82, 2.03],
+    s:[0, -2.8, 3.8, 1.2, 4.8, 2.03],
+  },
+  "6M":{
+    labels:["Ene'26","Feb'26","Mar'26","Abr'26","May'26","Jun'26"],
+    p:[0, -4.2, 1.9, 3.1, 17.82, 2.03],
+    s:[0, -2.8, 3.8, 1.2, 4.8, 2.03],
+  },
+  "3M":{
+    labels:["Abr'26","May'26","Jun'26"],
+    p:[0, 17.82, 2.03],
+    s:[0, 4.8, 2.03],
+  },
+  "1M":{
+    labels:["Sem 1 Jun","Sem 2 Jun","Sem 3 Jun","Sem 4 Jun"],
+    p:[0, 0.55, 0.68, 0.80],
+    s:[0, 0.50, 0.72, 0.81],
+  },
+};
+
+function cumul(arr){ let b=100; return arr.map((v,i)=>{ if(i===0)return 100; b=b*(1+v/100); return +b.toFixed(2); }); }
+function buildData(k){
+  const d=perfData[k];
+  return { labels:d.labels, datasets:[
+    {label:'Hypergrowth P',data:cumul(d.p),borderColor:'#1a4a2e',backgroundColor:'rgba(26,74,46,0.1)',borderWidth:2.5,pointRadius:3,tension:.3,fill:true},
+    {label:'S&P 500',      data:cumul(d.s),borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,0.04)',borderWidth:2,pointRadius:3,tension:.3,fill:false}
+  ]};
+}
+
+const perfCtx=document.getElementById('perfChart').getContext('2d');
+const perfChart=new Chart(perfCtx,{
+  type:'line', data:buildData('ALL'),
+  options:{
+    responsive:true, interaction:{mode:'index',intersect:false},
+    plugins:{ legend:{display:false}, tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${(c.parsed.y-100).toFixed(2)}%`}} },
+    scales:{
+      x:{grid:{color:'#d4cfc633'},ticks:{font:{size:11},color:'#8a8a8a'}},
+      y:{grid:{color:'#d4cfc633'},ticks:{font:{size:11},color:'#8a8a8a',callback:v=>(v-100).toFixed(0)+'%'}}
+    }
+  }
+});
+
+function updateChart(k,btn){
+  document.querySelectorAll('.perf-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  perfChart.data=buildData(k); perfChart.update();
+}
+
+// ── CORRELATION MATRIX ────────────────────────────────────────────────────────
+const syms=['NVO','V','META','ASML','AERO','DAL','SLB','VT','ACN','NFLX','TBBB'];
+const corr={
+  NVO: {NVO:1.00,V:.34,META:.28,ASML:.41,AERO:.10,DAL:-.05,SLB:-.10,VT:.55,ACN:.38,NFLX:.22,TBBB:.08},
+  V:   {NVO:.34,V:1.00,META:.45,ASML:.38,AERO:.08,DAL:.35,SLB:.20,VT:.71,ACN:.62,NFLX:.40,TBBB:.12},
+  META:{NVO:.28,V:.45,META:1.00,ASML:.52,AERO:.12,DAL:.25,SLB:.05,VT:.65,ACN:.58,NFLX:.68,TBBB:.10},
+  ASML:{NVO:.41,V:.38,META:.52,ASML:1.00,AERO:.15,DAL:.18,SLB:.08,VT:.60,ACN:.55,NFLX:.38,TBBB:.07},
+  AERO:{NVO:.10,V:.08,META:.12,ASML:.15,AERO:1.00,DAL:.42,SLB:.35,VT:.28,ACN:.15,NFLX:.10,TBBB:.20},
+  DAL: {NVO:-.05,V:.35,META:.25,ASML:.18,AERO:.42,DAL:1.00,SLB:.45,VT:.58,ACN:.31,NFLX:.20,TBBB:.15},
+  SLB: {NVO:-.10,V:.20,META:.05,ASML:.08,AERO:.35,DAL:.45,SLB:1.00,VT:.42,ACN:.18,NFLX:.08,TBBB:.10},
+  VT:  {NVO:.55,V:.71,META:.65,ASML:.60,AERO:.28,DAL:.58,SLB:.42,VT:1.00,ACN:.72,NFLX:.60,TBBB:.22},
+  ACN: {NVO:.38,V:.62,META:.58,ASML:.55,AERO:.15,DAL:.31,SLB:.18,VT:.72,ACN:1.00,NFLX:.52,TBBB:.14},
+  NFLX:{NVO:.22,V:.40,META:.68,ASML:.38,AERO:.10,DAL:.20,SLB:.08,VT:.60,ACN:.52,NFLX:1.00,TBBB:.18},
+  TBBB:{NVO:.08,V:.12,META:.10,ASML:.07,AERO:.20,DAL:.15,SLB:.10,VT:.22,ACN:.14,NFLX:.18,TBBB:1.00},
+};
+function corrBg(v){ if(v>=.7)return'#1a4a2e28'; if(v>=.5)return'#2d7a4f18'; if(v>=.3)return'#9fd4b410'; if(v<=-.3)return'#c0392b18'; return'transparent'; }
+(function(){
+  let h=`<thead><tr><th></th>${syms.map(s=>`<th>${s}</th>`).join('')}</tr></thead><tbody>`;
+  syms.forEach(r=>{ h+=`<tr><th>${r}</th>`+syms.map(c=>{ const v=corr[r][c]; return`<td style="background:${corrBg(v)};${r===c?'font-weight:600':''}">${v.toFixed(2)}</td>`; }).join('')+`</tr>`; });
+  document.getElementById('corrTable').innerHTML=h+'</tbody>';
+})();
+</script>
+</body>
+</html>
