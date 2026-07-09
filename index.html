@@ -267,7 +267,7 @@ footer a{color:var(--accent);text-decoration:none}
     </div>
 
     <!-- OPEN POSITIONS -->
-    <div class="section-header" style="margin-top:2rem"><span class="section-label">Posiciones abiertas (11 activos)</span><div class="section-rule"></div></div>
+    <div class="section-header" style="margin-top:2rem"><span class="section-label">Posiciones abiertas (7 activos)</span><div class="section-rule"></div></div>
     <table class="tbl" id="openTable"></table>
     <p class="note">*Precios de mercado al 26 de junio de 2026 (fuente: broker). Portafolio gestionado con fines de aprendizaje e investigación personal. Ningún activo mencionado constituye una recomendación de inversión — cada instrumento requiere análisis e investigación propia antes de tomar decisiones.</p>
 
@@ -277,14 +277,14 @@ footer a{color:var(--accent);text-decoration:none}
     <div style="display:flex;gap:2rem;margin-top:1rem;flex-wrap:wrap">
       <div style="background:var(--paper-dark);border:1px solid var(--rule);padding:1rem 1.5rem;text-align:center;min-width:140px">
         <div style="font-family:var(--serif);font-size:1.8rem;color:var(--green)">75%</div>
-        <div style="font-size:.7rem;color:var(--ink-light);margin-top:3px">Win Rate (6/8 trades)</div>
+        <div style="font-size:.7rem;color:var(--ink-light);margin-top:3px">Win Rate (9/12 trades)</div>
       </div>
       <div style="background:var(--paper-dark);border:1px solid var(--rule);padding:1rem 1.5rem;text-align:center;min-width:140px">
-        <div style="font-family:var(--serif);font-size:1.8rem;color:var(--accent)">8</div>
+        <div style="font-family:var(--serif);font-size:1.8rem;color:var(--accent)">12</div>
         <div style="font-size:.7rem;color:var(--ink-light);margin-top:3px">Trades cerrados en total</div>
       </div>
       <div style="background:var(--paper-dark);border:1px solid var(--rule);padding:1rem 1.5rem;text-align:center;min-width:140px">
-        <div style="font-family:var(--serif);font-size:1.8rem;color:var(--green)">+$317.61</div>
+        <div style="font-family:var(--serif);font-size:1.8rem;color:var(--green)">$+415.09</div>
         <div style="font-size:.7rem;color:var(--ink-light);margin-top:3px">P&L realizado total</div>
       </div>
     </div>
@@ -330,7 +330,7 @@ footer a{color:var(--accent);text-decoration:none}
       <div class="kpi"><span class="kpi-num a">14.8%</span><div class="kpi-lbl">E(Rp) Retorno Esperado Anual</div></div>
       <div class="kpi"><span class="kpi-num a">16.8%</span><div class="kpi-lbl">STDV — Riesgo Total del Portafolio</div></div>
       <div class="kpi"><span class="kpi-num g">1.12</span><div class="kpi-lbl">Sharpe Ratio (rf = 6.25% CETES)</div></div>
-      <div class="kpi"><span class="kpi-num b">~$2,714</span><div class="kpi-lbl">Valor de Mercado Total (USD)</div></div>
+      <div class="kpi"><span class="kpi-num b">~$1,762</span><div class="kpi-lbl">Valor de Mercado Total (USD)</div></div>
     </div>
   </section>
 
@@ -339,7 +339,7 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="section-header"><span class="section-label">Capacidades demostradas</span><div class="section-rule"></div></div>
     <div class="skills-grid">
       <div class="skill-block"><h3 class="skill-block-title">Análisis macroeconómico</h3><p class="skill-block-desc">Seguimiento de indicadores clave: inflación, tasas (Banxico / Fed), FX y coyuntura de mercados emergentes. Formación con académicos del Banco de México y ex CEPAL.</p></div>
-      <div class="skill-block"><h3 class="skill-block-title">Gestión de portafolio</h3><p class="skill-block-desc">11 activos en 6 sectores GICS. Win rate del 75% en 8 trades cerrados. Análisis fundamental, técnico y macroeconómico. Retorno all-time +26.21% vs S&P 500 +13.10%.</p></div>
+      <div class="skill-block"><h3 class="skill-block-title">Gestión de portafolio</h3><p class="skill-block-desc">7 activos en 4 sectores GICS. Win rate del 75% en 8 trades cerrados. Análisis fundamental, técnico y macroeconómico. Retorno all-time +26.21% vs S&P 500 +13.10%.</p></div>
       <div class="skill-block"><h3 class="skill-block-title">Creación de contenido financiero</h3><p class="skill-block-desc">Análisis, newsletters, guiones y posts para audiencias digitales e institucionales. Publicaciones en Rankia México. Experiencia en radio y formatos podcast.</p></div>
       <div class="skill-block"><h3 class="skill-block-title">Herramientas & Comunicación</h3><p class="skill-block-desc">Excel, Python, RStudio, Power BI, REFINITIV, TradingView, Economatica. IA aplicada a eficiencia editorial (Claude, Gemini). Español nativo · Inglés C1.</p></div>
     </div>
@@ -360,27 +360,27 @@ footer a{color:var(--accent);text-decoration:none}
 // ── DATA ─────────────────────────────────────────────────────────────────────
 const openPositions = [
   {sym:"ACN", name:"Accenture plc",            sector:"Information Technology",  qty:3,       avgCost:128.30, price:128.98},
-  {sym:"V",   name:"Visa Inc.",                sector:"Financials",              qty:0.99572, avgCost:339.10, price:336.24},
   {sym:"VT",  name:"Vanguard Total World ETF", sector:"ETF (Diversificado)",     qty:2,       avgCost:137.20, price:153.95},
   {sym:"ASML",name:"ASML Holding NV",          sector:"Information Technology",  qty:0.32363, avgCost:992.39, price:1794.66},
   {sym:"NVO", name:"Novo Nordisk A/S",         sector:"Health Care",             qty:2.99801, avgCost:50.52,  price:48.07},
-  {sym:"DAL", name:"Delta Air Lines Inc.",     sector:"Industrials",             qty:4,       avgCost:70.03,  price:92.57},
-  {sym:"SLB", name:"SLB Ltd.",                 sector:"Energy",                  qty:5,       avgCost:44.00,  price:47.00},
   {sym:"META",name:"Meta Platforms Inc.",      sector:"Communication Services",  qty:0.25890, avgCost:597.17, price:550.23},
-  {sym:"AERO",name:"Grupo Aeroméxico ADR",     sector:"Industrials",             qty:6,       avgCost:20.56,  price:18.34},
   {sym:"NFLX",name:"Netflix Inc.",             sector:"Communication Services",  qty:1,       avgCost:72.00,  price:73.81},
   {sym:"TBBB",name:"BBB Foods Inc.",           sector:"Consumer Staples",        qty:3,       avgCost:26.20,  price:41.99},
-];
+]; // prices updated by fetchLivePrices() on load
 
 const closedTrades = [
-  {sym:"RKLB",name:"Rocket Lab",    buyDate:"10 Sep 2025",sellDate:"09 Oct 2025",qty:1,   buyP:47.06, sellP:70.75},
-  {sym:"IQV", name:"IQVIA Holdings",buyDate:"10 Sep 2025",sellDate:"09 Oct 2025",qty:3,   buyP:180.90,sellP:203.70},
-  {sym:"DOCN",name:"DigitalOcean",  buyDate:"10 Sep 2025",sellDate:"12 Nov 2025",qty:1,   buyP:35.64, sellP:47.8612},
-  {sym:"RKLB",name:"Rocket Lab",    buyDate:"20 Nov 2025",sellDate:"31 Dic 2025",qty:3,   buyP:40.77, sellP:72.40},
-  {sym:"CRM", name:"Salesforce",    buyDate:"24 Nov 2025",sellDate:"23 Ene 2026",qty:1,   buyP:227.38,sellP:223.00},
-  {sym:"SAP", name:"SAP SE",        buyDate:"11 Sep 2025",sellDate:"26 Ene 2026",qty:1,   buyP:257.00,sellP:230.57},
-  {sym:"RKLB",name:"Rocket Lab",    buyDate:"30 Mar 2026",sellDate:"12 May 2026",qty:2,   buyP:57.08, sellP:120.00},
-  {sym:"USAR",name:"US Aerials",    buyDate:"21 May 2026",sellDate:"28 May 2026",qty:3.05,buyP:20.60, sellP:26.35},
+  {sym:"RKLB",name:"Rocket Lab",        buyDate:"10 Sep 2025",sellDate:"09 Oct 2025",qty:1,   buyP:47.06, sellP:70.75},
+  {sym:"IQV", name:"IQVIA Holdings",    buyDate:"10 Sep 2025",sellDate:"09 Oct 2025",qty:3,   buyP:180.90,sellP:203.70},
+  {sym:"DOCN",name:"DigitalOcean",      buyDate:"10 Sep 2025",sellDate:"12 Nov 2025",qty:1,   buyP:35.64, sellP:47.8612},
+  {sym:"RKLB",name:"Rocket Lab",        buyDate:"20 Nov 2025",sellDate:"31 Dic 2025",qty:3,   buyP:40.77, sellP:72.40},
+  {sym:"CRM", name:"Salesforce",        buyDate:"24 Nov 2025",sellDate:"23 Ene 2026",qty:1,   buyP:227.38,sellP:223.00},
+  {sym:"SAP", name:"SAP SE",            buyDate:"11 Sep 2025",sellDate:"26 Ene 2026",qty:1,   buyP:257.00,sellP:230.57},
+  {sym:"RKLB",name:"Rocket Lab",        buyDate:"30 Mar 2026",sellDate:"12 May 2026",qty:2,   buyP:57.08, sellP:120.00},
+  {sym:"USAR",name:"US Aerials",        buyDate:"21 May 2026",sellDate:"28 May 2026",qty:3.05,buyP:20.60, sellP:26.35},
+  {sym:"AERO",name:"Grupo Aeroméxico",  buyDate:"05 Ene 2026",sellDate:"05 Jul 2026",qty:6,   buyP:20.56, sellP:17.40},
+  {sym:"DAL", name:"Delta Air Lines",   buyDate:"05 Ene 2026",sellDate:"05 Jul 2026",qty:4,   buyP:70.03, sellP:94.20},
+  {sym:"V",   name:"Visa Inc.",         buyDate:"11 Sep 2025",sellDate:"05 Jul 2026",qty:1,   buyP:339.10,sellP:358.60},
+  {sym:"SLB", name:"SLB Ltd.",          buyDate:"06 Ene 2026",sellDate:"05 Jul 2026",qty:5,   buyP:44.00, sellP:45.22},
 ];
 
 const COLORS = ["#1a4a2e","#2d7a4f","#5aaa78","#9fd4b4","#1a3a5c","#2d5a8e","#5a8ec8","#8b4513","#c0392b","#888","#ba7517","#c8d8f0"];
@@ -519,19 +519,15 @@ function updateChart(k,btn){
 }
 
 // ── CORRELATION MATRIX ────────────────────────────────────────────────────────
-const syms=['NVO','V','META','ASML','AERO','DAL','SLB','VT','ACN','NFLX','TBBB'];
+const syms=['ACN','VT','ASML','NVO','META','NFLX','TBBB'];
 const corr={
-  NVO: {NVO:1.00,V:.34,META:.28,ASML:.41,AERO:.10,DAL:-.05,SLB:-.10,VT:.55,ACN:.38,NFLX:.22,TBBB:.08},
-  V:   {NVO:.34,V:1.00,META:.45,ASML:.38,AERO:.08,DAL:.35,SLB:.20,VT:.71,ACN:.62,NFLX:.40,TBBB:.12},
-  META:{NVO:.28,V:.45,META:1.00,ASML:.52,AERO:.12,DAL:.25,SLB:.05,VT:.65,ACN:.58,NFLX:.68,TBBB:.10},
-  ASML:{NVO:.41,V:.38,META:.52,ASML:1.00,AERO:.15,DAL:.18,SLB:.08,VT:.60,ACN:.55,NFLX:.38,TBBB:.07},
-  AERO:{NVO:.10,V:.08,META:.12,ASML:.15,AERO:1.00,DAL:.42,SLB:.35,VT:.28,ACN:.15,NFLX:.10,TBBB:.20},
-  DAL: {NVO:-.05,V:.35,META:.25,ASML:.18,AERO:.42,DAL:1.00,SLB:.45,VT:.58,ACN:.31,NFLX:.20,TBBB:.15},
-  SLB: {NVO:-.10,V:.20,META:.05,ASML:.08,AERO:.35,DAL:.45,SLB:1.00,VT:.42,ACN:.18,NFLX:.08,TBBB:.10},
-  VT:  {NVO:.55,V:.71,META:.65,ASML:.60,AERO:.28,DAL:.58,SLB:.42,VT:1.00,ACN:.72,NFLX:.60,TBBB:.22},
-  ACN: {NVO:.38,V:.62,META:.58,ASML:.55,AERO:.15,DAL:.31,SLB:.18,VT:.72,ACN:1.00,NFLX:.52,TBBB:.14},
-  NFLX:{NVO:.22,V:.40,META:.68,ASML:.38,AERO:.10,DAL:.20,SLB:.08,VT:.60,ACN:.52,NFLX:1.00,TBBB:.18},
-  TBBB:{NVO:.08,V:.12,META:.10,ASML:.07,AERO:.20,DAL:.15,SLB:.10,VT:.22,ACN:.14,NFLX:.18,TBBB:1.00},
+  ACN: {ACN:1.00,VT:.72,ASML:.55,NVO:.38,META:.58,NFLX:.52,TBBB:.14},
+  VT:  {ACN:.72,VT:1.00,ASML:.60,NVO:.55,META:.65,NFLX:.60,TBBB:.22},
+  ASML:{ACN:.55,VT:.60,ASML:1.00,NVO:.41,META:.52,NFLX:.38,TBBB:.07},
+  NVO: {ACN:.38,VT:.55,ASML:.41,NVO:1.00,META:.28,NFLX:.22,TBBB:.08},
+  META:{ACN:.58,VT:.65,ASML:.52,NVO:.28,META:1.00,NFLX:.68,TBBB:.10},
+  NFLX:{ACN:.52,VT:.60,ASML:.38,NVO:.22,META:.68,NFLX:1.00,TBBB:.18},
+  TBBB:{ACN:.14,VT:.22,ASML:.07,NVO:.08,META:.10,NFLX:.18,TBBB:1.00},
 };
 function corrBg(v){ if(v>=.7)return'#1a4a2e28'; if(v>=.5)return'#2d7a4f18'; if(v>=.3)return'#9fd4b410'; if(v<=-.3)return'#c0392b18'; return'transparent'; }
 (function(){
@@ -539,6 +535,121 @@ function corrBg(v){ if(v>=.7)return'#1a4a2e28'; if(v>=.5)return'#2d7a4f18'; if(v
   syms.forEach(r=>{ h+=`<tr><th>${r}</th>`+syms.map(c=>{ const v=corr[r][c]; return`<td style="background:${corrBg(v)};${r===c?'font-weight:600':''}">${v.toFixed(2)}</td>`; }).join('')+`</tr>`; });
   document.getElementById('corrTable').innerHTML=h+'</tbody>';
 })();
+
+// ── LIVE PRICES via Yahoo Finance (CORS proxy) ────────────────────────────────
+// Uses allorigins.win as a free CORS proxy to reach Yahoo Finance quote API
+// Falls back to static avgCost if fetch fails. Refreshes every 60 seconds.
+
+const PRICE_STATUS = {
+  el: null,
+  set(msg, ok) {
+    if (!this.el) {
+      this.el = document.createElement('div');
+      this.el.style.cssText = 'font-size:.68rem;color:var(--ink-light);margin-top:.5rem;font-style:italic;';
+      const note = document.querySelector('.note');
+      if (note) note.parentNode.insertBefore(this.el, note.nextSibling);
+    }
+    this.el.textContent = msg;
+    this.el.style.color = ok ? 'var(--green)' : 'var(--ink-light)';
+  }
+};
+
+async function fetchLivePrices() {
+  const symsToFetch = openPositions.map(p => p.sym).join(',');
+  const yahooUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symsToFetch}&fields=regularMarketPrice,regularMarketChangePercent`;
+  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(yahooUrl)}`;
+
+  try {
+    PRICE_STATUS.set('Actualizando cotizaciones...', false);
+    const res = await fetch(proxyUrl);
+    if (!res.ok) throw new Error('proxy error');
+    const json = await res.json();
+    const parsed = JSON.parse(json.contents);
+    const quotes = parsed?.quoteResponse?.result;
+    if (!quotes || !quotes.length) throw new Error('no quotes');
+
+    let updated = 0;
+    quotes.forEach(q => {
+      const pos = openPositions.find(p => p.sym === q.symbol);
+      if (pos && q.regularMarketPrice) {
+        pos.price = +q.regularMarketPrice.toFixed(2);
+        pos.changePercent = +(q.regularMarketChangePercent || 0).toFixed(2);
+        updated++;
+      }
+    });
+
+    // Re-render everything with new prices
+    buildOpenTable();
+    updatePieData();
+    perfChart.data = buildData(currentPeriod);
+    perfChart.update();
+
+    const now = new Date().toLocaleTimeString('es-MX', {hour:'2-digit', minute:'2-digit'});
+    PRICE_STATUS.set(`✓ Cotizaciones en tiempo real · Última actualización: ${now} · ${updated}/${openPositions.length} activos`, true);
+  } catch(err) {
+    const now = new Date().toLocaleTimeString('es-MX', {hour:'2-digit', minute:'2-digit'});
+    PRICE_STATUS.set(`Precios estáticos (sin conexión al mercado) · ${now}`, false);
+    console.warn('Live price fetch failed:', err.message);
+  }
+}
+
+function updatePieData() {
+  const totalMVlive = openPositions.reduce((s,h) => s + h.qty * h.price, 0);
+  const newAssetData = openPositions.map(h => +((h.qty*h.price/totalMVlive*100).toFixed(1)));
+  const newSectorMap = {};
+  openPositions.forEach(h => { newSectorMap[h.sector] = (newSectorMap[h.sector]||0) + h.qty*h.price; });
+  const newSectorData = sectorLabels.map(s => +((( newSectorMap[s]||0)/totalMVlive*100).toFixed(1)));
+
+  // Update pie chart data
+  pieChart.data.datasets[0].data = (pieChart.data.labels === assetLabels) ? newAssetData : newSectorData;
+  pieChart.update();
+}
+
+// ── TICKER BADGE — live price change indicator in open table ──────────────────
+const _origBuildOpen = buildOpenTable;
+function buildOpenTable() {
+  const totalMV = openPositions.reduce((s,h) => s + h.qty*h.price, 0);
+  const sorted = [...openPositions].sort((a,b) => (b.qty*b.price)-(a.qty*a.price));
+  let html = `<thead><tr><th>Ticker</th><th>Nombre</th><th>Sector GICS</th><th>Qty</th><th>Precio Prom.</th><th>Precio Actual</th><th>Hoy</th><th>Valor Mercado</th><th>Peso</th><th>P&L</th></tr></thead><tbody>`;
+  sorted.forEach(h => {
+    const mv = h.qty * h.price;
+    const pnl = (h.price - h.avgCost) / h.avgCost * 100;
+    const wt = mv / totalMV * 100;
+    const pc = pnl >= 0 ? 'g' : 'r';
+    const sign = pnl >= 0 ? '+' : '';
+    const chg = h.changePercent !== undefined ? h.changePercent : null;
+    const chgHtml = chg !== null
+      ? `<span style="font-size:.72rem;font-weight:500;color:${chg>=0?'var(--green)':'var(--red)'}">${chg>=0?'▲':'▼'} ${Math.abs(chg).toFixed(2)}%</span>`
+      : `<span style="font-size:.72rem;color:var(--ink-light)">—</span>`;
+    html += `<tr>
+      <td class="sym">${h.sym}</td>
+      <td>${h.name}</td>
+      <td style="font-size:.72rem">${h.sector}</td>
+      <td>${h.qty}</td>
+      <td>$${h.avgCost.toFixed(2)}</td>
+      <td style="font-weight:500">$${h.price.toFixed(2)}</td>
+      <td>${chgHtml}</td>
+      <td>$${mv.toFixed(2)}</td>
+      <td>${wt.toFixed(1)}%</td>
+      <td class="${pc}" style="font-weight:500">${sign}${pnl.toFixed(1)}%</td>
+    </tr>`;
+  });
+  html += `</tbody>`;
+  document.getElementById('openTable').innerHTML = html;
+}
+
+// Track current period for re-render after price update
+let currentPeriod = 'ALL';
+const _origUpdateChart = updateChart;
+function updateChart(k, btn) {
+  currentPeriod = k;
+  _origUpdateChart(k, btn);
+}
+
+// Init & auto-refresh every 60 seconds
+fetchLivePrices();
+setInterval(fetchLivePrices, 60000);
+
 </script>
 </body>
 </html>
